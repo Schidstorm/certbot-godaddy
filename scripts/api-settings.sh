@@ -16,7 +16,7 @@ env_print_secret() {
   if [ -z "${$1}" ]; then
     echo $1: > /dev/stderr
   else
-    echo $1: ******** > /dev/stderr
+    echo $1: 'xxxxxxxxxx' > /dev/stderr
   fi
 }
 
