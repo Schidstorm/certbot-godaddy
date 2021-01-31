@@ -9,7 +9,15 @@ option() {
 }
 
 env_print() {
-  echo ${$1} > /dev/stderr
+  echo $1: ${$1} > /dev/stderr
+}
+
+env_print_secret() {
+  if [ -z "${$1}" ]; then
+    echo $1: > /dev/stderr
+  else
+    echo $1: ******** > /dev/stderr
+  fi
 }
 
 DOMAIN=$(option domain)
@@ -25,5 +33,5 @@ GODADDY_URL=$(option apiUrl)
 
 env_print DOMAIN
 env_print GODADDY_API_KEY
-env_print GODADDY_API_SECRET
+env_print_secret GODADDY_API_SECRET
 env_print GODADDY_URL
