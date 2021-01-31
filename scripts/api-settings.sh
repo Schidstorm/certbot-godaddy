@@ -8,16 +8,12 @@ jsonOption() {
   cat $CONFIG_FILE | jq -r ".$key"
 }
 
-value() {
-  env | egrep "^$1=" | cut -d= -f2
-}
-
 env_print() {
-  echo $1: $(value $1) > /dev/stderr
+  echo $1: $2 > /dev/stderr
 }
 
 env_print_secret() {
-  if [ -z "$(value $1)" ]; then
+  if [ -z "$2" ]; then
     echo $1: > /dev/stderr
   else
     echo $1: 'xxxxxxxxxx' > /dev/stderr
@@ -35,8 +31,8 @@ GODADDY_API_SECRET=`jsonOption apiSecret`
 GODADDY_URL=`jsonOption apiUrl`
 ############################################################
 
-env_print CONFIG_FILE
-env_print DOMAIN
-env_print GODADDY_API_KEY
-env_print_secret GODADDY_API_SECRET
-env_print GODADDY_URL
+env_print CONFIG_FILE $CONFIG_FILE
+env_print DOMAIN $DOMAIN
+env_print GODADDY_API_KEY $GODADDY_API_KEY
+env_print_secret GODADDY_API_SECRET $GODADDY_API_SECRET
+env_print GODADDY_URL $GODADDY_URL
