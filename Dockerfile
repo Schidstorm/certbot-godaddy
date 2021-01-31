@@ -1,7 +1,7 @@
 FROM certbot/certbot
 
 RUN apk update && apk upgrade
-RUN apk add jq
+RUN apk add jq curl
 
 COPY scripts/api-settings.sh /usr/bin/
 COPY scripts/certbot-godaddy-auth.sh /usr/bin/
