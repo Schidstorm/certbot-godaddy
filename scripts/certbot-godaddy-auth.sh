@@ -10,7 +10,7 @@ echo Creating ${DNS_REC_TYPE} record ${DNS_REC_NAME}.${CERTBOT_DOMAIN} for certi
 
 curl    -i \
         -X PATCH \
-        "${GODADDY_URL}/v1/domains/${CERTBOT_DOMAIN}/records" \
+        "${GODADDY_URL}/v1/domains/$( echo $CERTBOT_DOMAIN | rev | cut -d. -f1-2 | rev)/records" \
         -H "accept: application/json" \
         -H "Content-Type: application/json" \
         -H "Authorization: sso-key ${GODADDY_API_KEY}:${GODADDY_API_SECRET}" \
