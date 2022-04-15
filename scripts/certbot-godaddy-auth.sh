@@ -16,4 +16,4 @@ curl    -i \
         -H "Authorization: sso-key ${GODADDY_API_KEY}:${GODADDY_API_SECRET}" \
         -d "[{\"data\": \"${DNS_REC_DATA}\", \"name\": \"${DNS_REC_NAME}\", \"type\": \"${DNS_REC_TYPE}\", \"ttl\": 600}]"
 
-sleep 30s
+sleep 60
