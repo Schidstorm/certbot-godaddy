@@ -6,7 +6,9 @@ DNS_REC_TYPE=TXT
 DNS_REC_NAME="_acme-challenge"
 DNS_REC_DATA="$CERTBOT_VALIDATION"
 
-echo Creating ${DNS_REC_TYPE} record ${DNS_REC_NAME}.${CERTBOT_DOMAIN} for certificate renewal with value ${DNS_REC_DATA}
+DNS_RECORD_NAME_COMPLETE="${DNS_REC_NAME}.$(echo $CERTBOT_DOMAIN | rev | cut -d. -f3- | rev)"
+
+echo Creating ${DNS_REC_TYPE} record ${DNS_RECORD_NAME_COMPLETE} for certificate renewal with value ${DNS_REC_DATA}
 
 curl    -i \
         -X PATCH \
